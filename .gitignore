@@ -1,0 +1,33 @@
+# Training logs and checkpoints
+/logs
+/onnx
+
+# Python caches and build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.so
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Deploy reports
+deploy/deploy_mujoco/reports/
+
+# Archives
+*.zip
+*.7z
+
+# Claude Code
+.claude/
+
+# Misc
+.codex
+sim_record/

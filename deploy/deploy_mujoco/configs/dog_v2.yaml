@@ -1,0 +1,42 @@
+# dog_v2 MuJoCo sim2sim deployment config
+# All parameters matched to IsaacGym training config (dog_v2_config.py)
+
+xml_path: "{PROJECT_ROOT}/deploy/deploy_mujoco/configs/dog_v2_flat.xml"
+
+# 仿真步长 (IsaacGym: sim.dt = 0.005)
+simulation_dt: 0.005
+# 控制分频 (IsaacGym: control.decimation = 2, 策略频率 = 100Hz)
+control_decimation: 2
+
+# PD 增益 (IsaacGym: control.stiffness=25.0, damping=0.5)
+kps: [25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0, 25.0]
+kds: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+
+# 默认关节角度 (IsaacGym: init_state.default_joint_angles = all 0.0)
+# 顺序: LF(HipA,HipF,Knee), LR(HipA,HipF,Knee), RF(HipA,HipF,Knee), RR(HipA,HipF,Knee)
+default_angles: [0.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0,  0.0, 0.0, 0.0]
+
+# 观测缩放 (IsaacGym: normalization.obs_scales)
+lin_vel_scale: 2.0
+ang_vel_scale: 0.25
+dof_pos_scale: 1.0
+dof_vel_scale: 0.05
+action_scale: 0.25
+
+# 指令缩放 (IsaacGym: commands_scale = [lin_vel, lin_vel, ang_vel])
+cmd_scale: [2.0, 2.0, 0.25]
+
+# 观测维度
+num_actions: 12
+num_obs: 270
+num_one_step_obs: 45
+
+# 初始指令 [x速度, y速度, 偏航角速度]
+cmd_init: [0, 0, 0]
+
+# 基座初始化高度
+# 纯 mesh 足端/腿段碰撞下，0.30 会先悬空掉落，0.27 时脚 mesh 已开始接地
+init_base_height: 0.27
+
+# 初始前进速度 (play 默认 x_vel=1.0)
+cmd_x_init: 0.0
